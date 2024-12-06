@@ -1,0 +1,253 @@
+
+Screenshot:
+SAVEIMG("01_ST_001-003-003-001-007_image1.bmp", GETID("センタメインメニュー　-N網-","SunAwtFrame"))
+
+SAVEIMG("ST-001-026-026-010-006_image6.bmp", GETID("モニタ設定　-N網-","SunAwtFrame"), 0, 0, 1900, 900)
+
+SAVEIMG("ST-001-035-035-006-001_image1.bmp", GETID("イベント通知一覧　-N網-","VTWin32"))
+
+SLEEP(2)
+SAVEIMG("01_ST-001-010-010-014_image1", GETID("イベント通知一覧　-N網-","SunAwtFrame"))
+
+ACW(GETID("イベント通知一覧　-N網-","SunAwtFrame"),11,4,1906,1032,0)
+
+SLEEP(2)
+SAVEIMG("01_ST-001-010-010-014_image1", GETID("_________________","SunAwtFrame"))
+
+ACW(GETID("イベント通知一覧　-N網-","SunAwtFrame"),11,4,1906,1032,0)
+
+---
+
+ACW(GETID("イベント通知一覧　-N網-","SunAwtFrame"),11,4,1906,1032,0)
+
+SAVEIMG("VTE異常復旧手順_image3-a", GETID("イベント通知一覧　-N網-","SunAwtFrame"), 0, 0, 1900, 900)
+
+ACW(GETID("_________________","SunAwtFrame"),11,4,1906,1032,0)
+
+SAVEIMG("VTE異常復旧手順_image3-b", GETID("_________________","SunAwtFrame"))
+
+---
+
+Code Input:
+act_id=GETID(GET_ACTIVE_WIN)
+SENDSTR(act_id, ("100.85.254.189"), 0)
+
+---
+
+DIM WIN1 = GETID(GET_ACTIVE_WIN)
+PRINT WIN1
+
+---
+
+PRINT ""
+PRINT "開始"
+PRINT ""
+
+PRINT "第1バッチ開始開始"
+
+---
+
+PRINT ""
+PRINT "終了"
+PRINT ""
+
+PRINT "第1バッチ終了"
+
+---
+
+KBD(VK_DOWN,CLICK,203)
+
+Enter:
+KBD(VK_RETURN,CLICK,703)
+
+KBD(VK_1,DOWN,31)
+KBD(VK_0,DOWN,31)
+KBD(VK_0,DOWN,31)
+KBD(VK_OEM_PERIOD,DOWN,31)
+KBD(VK_1,DOWN,31)
+KBD(VK_1,DOWN,31)
+KBD(VK_0,DOWN,31)
+KBD(VK_OEM_PERIOD,DOWN,31)
+KBD(VK_3,DOWN,31)
+KBD(VK_2,DOWN,31)
+KBD(VK_OEM_PERIOD,DOWN,31)
+KBD(VK_8,DOWN,31)
+KBD(VK_6,DOWN,31)
+
+Space - KBD(VK_SPACE,CLICK,31)
+/ - KBD(VK_OEM_2,CLICK,31)
+
+underscore:
+KBD(VK_SHIFT,DOWN,31)
+KBD(VK_OEM_102,CLICK,31)
+KBD(VK_SHIFT,UP,31)
+
+period - KBD(VK_OEM_PERIOD,CLICK,31)
+
+insert - KBD(VK_INSERT,CLICK,31)
+
+right key - KBD(VK_RIGHT,CLICK,31)
+
+delete - KBD(VK_DELETE,CLICK,31)
+
+backspace - KBD(VK_BACK,CLICK,31)
+
+esc - KBD(VK_ESC,CLICK,31)
+
+: - KBD(VK_OEM_1,CLICK,31)
+
+dash/minus - KBD(VK_OEM_MINUS,CLICK,828)
+
+tab - KBD(VK_TAB,CLICK,860)
+
+! 
+KBD(VK_SHIFT,DOWN,453)
+KBD(VK_1,CLICK,250)
+KBD(VK_SHIFT,UP,62)
+
+capital:
+KBD(VK_SHIFT,DOWN,453)
+KBD(VK_A,CLICK,250)
+KBD(VK_SHIFT,UP,62)
+
+|:
+KBD(VK_SHIFT,DOWN,219)
+KBD(VK_OEM_5,CLICK,140)
+KBD(VK_SHIFT,UP,157)
+
+*:
+KBD(VK_SHIFT,DOWN,1250)
+KBD(VK_OEM_1,CLICK,141)
+KBD(VK_SHIFT,UP,187)
+
+":
+KBD(VK_SHIFT,DOWN,1375)
+KBD(VK_2,CLICK,297)
+KBD(VK_SHIFT,UP,78)
+
+\:
+KBD(VK_OEM_102,CLICK,1406)
+
+---
+
+CALL ./../01_ST-001-010-010-003/01_ST-001-010-010-003.UWS
+
+---
+
+GETTIME()
+
+DIM CURMONTH = 0
+
+DIM CURDAY = 0
+
+DIM YOBI = ""
+
+IF G_TIME_MM < 10 THEN
+	CURMONTH = "/0" + G_TIME_MM
+ELSE
+	CURMONTH = G_TIME_MM
+ENDIF
+
+IF G_TIME_DD < 10 THEN
+	CURDAY = "/0" + G_TIME_DD
+ELSE
+	CURDAY = G_TIME_DD
+ENDIF
+
+IF G_TIME_WW = 0
+	YOBI = "日"
+ELSEIF G_TIME_WW = 1
+	YOBI = "月"
+ELSEIF G_TIME_WW = 2
+	YOBI = "火"
+ELSEIF G_TIME_WW = 3
+	YOBI = "水"
+ELSEIF G_TIME_WW = 4
+	YOBI = "木"
+ELSEIF G_TIME_WW = 5
+	YOBI = "金"
+ELSEIF G_TIME_WW = 6
+	YOBI = "土"
+ENDIF
+
+SAVEIMG("01_ST_001-007-007-001-001_image6.bmp", GETID("NHK宇都宮-アクセスＩＦ運用表-["+G_TIME_YY+"/"+CURMONTH+"/"+CURDAY+"("+YOBI+")]自局素材回線表示","SunAwtFrame"))
+
+---
+
+DIM WIN1 = GETID(GET_ACTIVE_WIN)
+PRINT WIN1
+
+---
+
+FOR i=1 TO 35
+	KBD(VK_RIGHT,CLICK,31)
+NEXT
+
+---
+
+@echo off
+set uwsFilePath=..\path_to_your_directory\your_file.uws
+
+IF EXIST "%uwsFilePath%" (
+    your_command "%uwsFilePath%"
+) ELSE (
+    echo File not found: %uwsFilePath%
+)
+
+---
+
+start "MyIEWindow" "C:\Program Files\Internet Explorer\iexplore.exe" "https://www.example.com"
+
+start "MyIEWindow" "C:\Program Files\Internet Explorer\iexplore.exe" -nomerge http://100.110.10.189/ArCastncenter/
+
+taskkill /FI "WINDOWTITLE eq MyIEWindow" /F
+
+taskkill /FI "WINDOWTITLE eq センタメインメニュー　-N網-" /F
+
+taskkill /FI "WINDOWTITLE eq センタログイン　-N網- - Internet Explorer" /F
+
+taskkill /FI "WINDOWTITLE eq ログイン - Internet Explorer" /F
+
+taskkill /F /IM iexplore.exe
+
+---
+
+chcp 65001 >nul
+
+---
+
+MSGBOX("Pause for debugging. Click OK to continue.")
+
+
+UWSCファイルとシナリオの作成、変更方法
+
+
+UWSCツールの基本操作
+
+
+UWSCシナリオファイル作成方法
+
+
+UWSCシナリオファイル修正方法
+
+
+
+ST001-003：業務流し(マイグレ対応)																							
+ST001-006：業務流し(臨時アクセス回線登録)																							
+ST001-007：業務流し(臨時アクセス回線削除)																							
+ST001-008：業務流し(VTE、CPE増設作業)																							
+ST001-009：業務流し(VTE、CPE減設作業)																							
+ST001-010：業務流し(デフォルトネット新規メンバー追加)																							
+ST001-011：業務流し(デフォルトネットメンバ削除)																							
+ST001-012：業務流し(導通特性試験)																							
+ST001-014：業務流し(開通試験(CPE))																							
+ST001-022：業務流し(比較復旧)																							
+ST001-023：業務流し(再送DL)																							
+ST001-026：業務流し(故障部位特定)																							
+ST001-034：業務流し(VTE電源断対応)																							
+ST001-035：業務流し(故障対応)																							
+ST001-052：業務流し(リンク規制)																							
+ST001-071：業務流し(ECC端末増設減設)																							
+
+
+
