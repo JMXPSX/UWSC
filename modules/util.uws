@@ -1,0 +1,119 @@
+CLASS Util
+
+	PROCEDURE loading(iteration)
+	
+		//PRINT ""
+
+		FOR i=1 TO iteration
+		
+			FUKIDASI(iteration - i,0,0)
+			SLEEP(1)
+		  	//PRINT iteration - i
+		NEXT
+		
+		//PRINT ""
+
+	FEND
+	
+	PROCEDURE log(str)
+	
+		gettime()
+
+		dim date1 = G_TIME_YY4 + "_" + G_TIME_MM2 + "_" + G_TIME_DD2
+
+		dim LOGFILE = "log\log" + date1 + ".txt"
+	
+		fid = fopen(LOGFILE, F_READ OR F_WRITE)
+	
+		date2 = "" + G_TIME_YY4 + "/" + G_TIME_MM2 + "/" + G_TIME_DD2 + " " + G_TIME_HH2 + ":" + G_TIME_NN2 + ":" + G_TIME_SS2
+	
+		fput(fid, date2 + " " + str, 0)
+	
+		fclose(fid)
+	
+	fend
+	
+	PROCEDURE typeDateTime()
+	
+		// -------------------- YYYY
+
+		GETTIME()
+
+		DIM FIRSTYY = (G_TIME_YY/1000) MOD 10
+		numKeyType(FIRSTYY)
+
+		DIM SECONDYY  = (G_TIME_YY/100) MOD 10
+		numKeyType(SECONDYY)
+
+		DIM THIRDYY = (G_TIME_YY/10) MOD 10
+		numKeyType(THIRDYY)
+
+		DIM FOURTHYY  =  G_TIME_YY MOD 10
+		numKeyType(FOURTHYY)
+
+		// -------------------- MM
+
+		DIM CURMONTH = 0
+		DIM FIRSTMM = 0
+		DIM SECONDMM = 0
+
+		IF G_TIME_MM < 10 THEN
+			CURMONTH = "0" + G_TIME_MM
+			numKeyType(0)
+			
+			SECONDMM  =  CURMONTH MOD 10
+			numKeyType(SECONDMM)
+		ELSE
+			CURMONTH = G_TIME_MM
+			
+			FIRSTMM  = REPLACE(FORMAT((CURMONTH/10), 0), "", "")
+			SECONDMM  = REPLACE(FORMAT((CURMONTH MOD 10), 0), "", "")
+			
+			numKeyType(FIRSTMM)
+			numKeyType(SECONDMM)
+		ENDIF
+
+		// -------------------- DD
+
+		DIM CURDAY = 0
+		DIM FIRSTDD = 0
+		DIM SECONDDD = 0
+
+		IF G_TIME_DD < 10 THEN
+			CURDAY = "0" + G_TIME_DD
+			numKeyType(0)
+			
+			SECONDDD  =  CURDAY MOD 10
+			numKeyType(SECONDDD)
+		ELSE
+			CURDAY = G_TIME_DD
+			
+			FIRSTDD  = REPLACE(FORMAT((CURDAY/10), 0), "", "")
+			SECONDDD  = REPLACE(FORMAT((CURDAY MOD 10), 0), "", "")
+			
+			numKeyType(FIRSTDD)
+			numKeyType(SECONDDD)
+		ENDIF
+		
+		//DATESTR = "" + FIRSTYY + SECONDYY + THIRDYY + FOURTHYY + FIRSTMM + SECONDMM + FIRSTDD + SECONDDD
+		
+		//PRINT DATESTR
+	
+	FEND
+	
+	PROCEDURE numKeyType(param)
+		SELECT param	
+			CASE 0;		KBD(VK_0,CLICK,100)
+			CASE 1;		KBD(VK_1,CLICK,100)
+			CASE 2;		KBD(VK_2,CLICK,100)
+			CASE 3;		KBD(VK_3,CLICK,100)
+			CASE 4;		KBD(VK_4,CLICK,100)
+			CASE 5;		KBD(VK_5,CLICK,100)
+			CASE 6;		KBD(VK_6,CLICK,100)
+			CASE 7;		KBD(VK_7,CLICK,100)
+			CASE 8;		KBD(VK_8,CLICK,100)
+			CASE 9;		KBD(VK_9,CLICK,100)	
+		SELEND
+	FEND
+
+ENDCLASS

@@ -1,0 +1,26 @@
+
+SELECT SLCTBOX(SLCT_BTN, 0, "テストケース番号を選択してください",_ 
+					"センタログイン",_ 
+					"センタログアウト",_
+					"ArCast-Nログイン",_ 
+					"ArCast-Nログアウト",_ 
+					"UWSC.exeの終了",_
+					"閉じる")
+					
+CASE SLCT_1
+  CALL センタログイン.UWS
+CASE SLCT_2
+  CALL センタログアウト.UWS
+  
+CASE SLCT_3
+  CALL ArCast-Nログイン.UWS 
+CASE SLCT_4
+  CALL ArCast-Nログアウト.UWS 
+  
+CASE SLCT_5
+  DosCmd("TASKKILL /F /IM uwsc.exe")
+  
+CASE SLCT_6
+  EXITEXIT
+SELEND
+

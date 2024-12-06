@@ -1,0 +1,25 @@
+
+//マウス座標取得
+WHILE TRUE
+	FUKIDASI("左クリック待ち 他画面でのクリック注意",10,0,0,10)
+	
+	IFB GETKEYSTATE(VK_LBUTTON)
+		x = G_MOUSE_X  //マウスカーソルのX座標
+		y = G_MOUSE_Y  //マウスカーソルのY座標
+
+		PRINT "MMV(" + x + "," + y + ",93)"
+		PRINT "SLEEP(1)"
+		PRINT ""
+		PRINT "BTN(LEFT,CLICK," + x + "," + y + ",0)"
+		PRINT "SLEEP(1)"
+
+		BREAK
+	ENDIF
+WEND
+
+PRINT ""
+
+FOR ID IN GETALLWIN()
+	PRINT ID + "," + STATUS(ID, ST_TITLE) + "," + STATUS(ID, ST_CLASS)
+NEXT
+
