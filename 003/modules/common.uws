@@ -1,0 +1,31 @@
+Class Main
+
+PROCEDURE LoadMenu
+
+	SELECT SLCTBOX(SLCT_BTN, 0, "テストケース番号を選択してください",_ 
+						"スタート",_ 
+						"データリセット",_ 
+						"閉じる")
+						
+	CASE SLCT_1
+	  //PRINT "" 
+	  //PRINT "スタート"
+	  //PRINT ""
+	  CALL ./../ST_001-003-003-001.UWS
+	  CALL ./../ST_001-003-003_メニュー.UWS
+	CASE SLCT_2
+	  //PRINT ""
+	  //PRINT "データリセット"
+	  //PRINT ""
+	  CALL ./../データリセット.UWS
+	  CALL ./../ST_001-003-003_メニュー.UWS
+	CASE SLCT_3
+	  //PRINT ""
+	  //PRINT "閉じる"
+	  //PRINT ""
+	  EXITEXIT
+	SELEND
+
+FEND
+
+Endclass
